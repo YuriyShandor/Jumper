@@ -1,0 +1,67 @@
+// to compile...
+
+@import "./_components/_open-sans.scss";
+@import "./_components/_roboto.scss";
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  //border: 1px solid red;
+}
+
+body {
+  font-family: OpenSans, Arial sans-serif;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#arena {
+  width: 1024px;
+  height: 600px;
+  margin: 50px auto;
+  background: #e0e0e0;
+  position: relative;
+  display: -ms-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+
+  .ground {
+    width: inherit;
+    height: 100px;
+    background: #212121;
+  }
+
+  #jumper {
+    width: 60px;
+    position: absolute;
+    left: 20%;
+    bottom: 100px;
+  }
+}
+
+@media only screen and (max-width : 1199px) {
+
+}
+
+@media only screen and (max-width : 991px) {
+
+}
+
+@media only screen and (max-width : 767px) {
+
+}
+
+@media only screen and (max-width : 567px) {
+
+}
