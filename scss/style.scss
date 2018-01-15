@@ -50,6 +50,34 @@ body {
   }
 }
 
+.barrier-block {
+  width: 5px;
+  height: 50px;
+  background: #212121;
+  position: absolute;
+  bottom: 100px;
+  -webkit-animation-name: identifier;
+          animation-name: identifier;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  // -webkit-animation-delay: 2s;
+  //         animation-delay: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes identifier {
+  0% {left: 100%;}
+  100% {left: 0%; display: none;}
+}
+
+@keyframes identifier {
+  0% {left: 100%;}
+  100% {left: 0%; display: none;}
+}
+
 @media only screen and (max-width : 1199px) {
 
 }
