@@ -14,24 +14,22 @@ document.onkeydown = jumping;
 
 //=============================================================
 
-var createBarrier;
+var barrier;
 var rand = 300;
 
 function randomize() {
-    doSomething();
-    rand = Math.round(Math.random()*(3000-500))+500;
-    clearInterval(createBarrier);
-    createBarrier = setInterval('randomize();', rand);
+  createBarrier();
+  rand = Math.round(Math.random()*(3000-500))+500;
+  clearInterval(barrier);
+  barrier = setInterval('randomize();', rand);
 }
 
-createBarrier = setInterval('randomize();', rand);
+console.log(rand);
 
-var div;
+barrier = setInterval('randomize();', rand);
 
-function doSomething(){
-  div = document.createElement('div');
+function createBarrier(){
+  var div = document.createElement('div');
   div.className = "barrier-block";
   arena.appendChild(div);
 }
-
-setInterval("div.remove()", 4000);

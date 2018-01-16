@@ -35,6 +35,7 @@ body {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  overflow: hidden;
 
   .ground {
     width: inherit;
@@ -62,20 +63,16 @@ body {
           animation-timing-function: linear;
   -webkit-animation-duration: 4s;
           animation-duration: 4s;
-  // -webkit-animation-delay: 2s;
-  //         animation-delay: 2s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
 }
 
 @-webkit-keyframes identifier {
   0% {left: 100%;}
-  100% {left: 0%; display: none;}
+  100% {left: 0%;}
 }
 
 @keyframes identifier {
   0% {left: 100%;}
-  100% {left: 0%; display: none;}
+  100% {left: 0%;}
 }
 
 @media only screen and (max-width : 1199px) {

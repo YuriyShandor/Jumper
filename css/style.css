@@ -95,6 +95,7 @@ body {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 #arena .ground {
@@ -122,8 +123,6 @@ body {
   animation-timing-function: linear;
   -webkit-animation-duration: 4s;
   animation-duration: 4s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
 }
 
 @-webkit-keyframes identifier {
@@ -132,7 +131,6 @@ body {
   }
   100% {
     left: 0%;
-    display: none;
   }
 }
 
@@ -142,6 +140,5 @@ body {
   }
   100% {
     left: 0%;
-    display: none;
   }
 }
