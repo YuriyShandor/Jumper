@@ -12,9 +12,26 @@ function jumping(e) {
 
 document.onkeydown = jumping;
 
+//=============================================================
 
-var div = document.createElement('div');
-div.className = "barrier-block";
-arena.appendChild(div);
+var createBarrier;
+var rand = 300;
 
-//etInterval("arena.appendChild(div)", 3000);
+function randomize() {
+    doSomething();
+    rand = Math.round(Math.random()*(3000-500))+500;
+    clearInterval(createBarrier);
+    createBarrier = setInterval('randomize();', rand);
+}
+
+createBarrier = setInterval('randomize();', rand);
+
+var div;
+
+function doSomething(){
+  div = document.createElement('div');
+  div.className = "barrier-block";
+  arena.appendChild(div);
+}
+
+setInterval("div.remove()", 4000);
