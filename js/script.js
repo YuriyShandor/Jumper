@@ -14,22 +14,41 @@ document.onkeydown = jumping;
 
 //=============================================================
 
-var barrier;
-var rand = 300;
+// var barrier;
+// var rand = 300;
 
-function randomize() {
-  createBarrier();
-  rand = Math.round(Math.random()*(3000-500))+500;
-  clearInterval(barrier);
-  barrier = setInterval('randomize();', rand);
-}
+// function randomize() {
+//   createBarrier();
+//   rand = Math.round(Math.random()*(3000-500))+500;
+//   clearInterval(barrier);
+//   barrier = setInterval('randomize();', rand);
+// }
+//
+// console.log(rand);
+//
+// barrier = setInterval('randomize();', rand);
+//
+// function createBarrier(){
+//   var div = document.createElement('div');
+//   div.className = "barrier-block";
+//   arena.appendChild(div);
+// }
 
-console.log(rand);
+var barrier = document.createElement('div');
+barrier.className = "barrier-block";
 
-barrier = setInterval('randomize();', rand);
+var arr = [barrier];
 
-function createBarrier(){
-  var div = document.createElement('div');
-  div.className = "barrier-block";
-  arena.appendChild(div);
-}
+console.log(arr[0]);
+
+arena.appendChild(arr[0]);
+
+function deleteBarier() {
+  return delete arr[0];
+};
+
+setTimeout(deleteBarier, 4000);
+
+delete arr[0];
+
+console.log(arr[0]);
