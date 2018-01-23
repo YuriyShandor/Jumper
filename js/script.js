@@ -37,18 +37,22 @@ document.onkeydown = jumping;
 var barrier = document.createElement('div');
 barrier.className = "barrier-block";
 
-var arr = [barrier];
 
-console.log(arr[0]);
+function createBarrier() {
+  var arr = [];
+  arr.push(barrier);
 
-arena.appendChild(arr[0]);
+  arena.appendChild(arr[0]);
 
-function deleteBarier() {
-  return delete arr[0];
+  function deleteBarier() {
+    return arena.removeChild(arr[0]);
+  };
+
+  setTimeout(deleteBarier, 4030);
 };
 
-setTimeout(deleteBarier, 4000);
+createBarrier();
 
-delete arr[0];
-
-console.log(arr[0]);
+// var randomize = 1000 + Math.random() * (3000 - 1000);
+//
+// setInterval(createBarrier, randomize);
