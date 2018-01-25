@@ -34,25 +34,27 @@ document.onkeydown = jumping;
 //   arena.appendChild(div);
 // }
 
-var barrier = document.createElement('div');
-barrier.className = "barrier-block";
 
+
+var arr = [];
 
 function createBarrier() {
-  var arr = [];
+  var barrier = document.createElement('div');
+  barrier.className = "barrier-block";
+  
   arr.push(barrier);
 
   arena.appendChild(arr[0]);
 
-  function deleteBarier() {
-    return arena.removeChild(arr[0]);
-  };
-
-  setTimeout(deleteBarier, 4030);
+  // function deleteBarier() {
+  //   return arena.removeChild(arr[0]);
+  // };
+  //
+  // setTimeout(deleteBarier, 4000);
 };
 
-createBarrier();
+//createBarrier();
 
-// var randomize = 1000 + Math.random() * (3000 - 1000);
-//
-// setInterval(createBarrier, randomize);
+var randomize = 1000 + Math.random() * (3000 - 1000);
+
+setInterval(createBarrier, randomize);
