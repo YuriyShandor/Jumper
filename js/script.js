@@ -38,19 +38,30 @@ document.onkeydown = jumping;
 
 var arr = [];
 
+// function createBarrier() {
+//   var barrier = document.createElement('div');
+//   barrier.className = "barrier-block";
+//
+//   arr.push(barrier);
+//
+//   arena.appendChild(arr[0]);
+//
+//   // function deleteBarier() {
+//   //   return arena.removeChild(arr[0]);
+//   // };
+//   //
+//   // setTimeout(deleteBarier, 4000);
+// };
 function createBarrier() {
   var barrier = document.createElement('div');
   barrier.className = "barrier-block";
-  
-  arr.push(barrier);
+  arena.appendChild(barrier);
 
-  arena.appendChild(arr[0]);
+  function deleteBarier() {
+    return arena.removeChild(barrier);
+  };
 
-  // function deleteBarier() {
-  //   return arena.removeChild(arr[0]);
-  // };
-  //
-  // setTimeout(deleteBarier, 4000);
+  setTimeout(deleteBarier, 4000);
 };
 
 //createBarrier();
