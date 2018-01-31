@@ -1,71 +1,110 @@
-var jumper = document.getElementById("jumper");
-var arena = document.getElementById("arena");
+var arena = document.getElementById('arena')
+var c = arena.getContext('2d');
 
-function jumping(e) {
-  var x = e.keyCode;
-  if (x == 38 || x == 32) {
-    jumper.style.bottom = "170px";
-  };
+arena.width = 1024;
+arena.height = 600;
 
-  setTimeout("jumper.style.bottom = '100px'", 300);
+c.fillRect(0, 500, 1024, 100);
+
+// var jumperImage = document.getElementById('jumperImage');
+//
+// console.log(jumperImage);
+//
+// c.drawImage(jumperImage, 100, 100, 50, 50);
+
+var image = new Image();
+image.src = '../img/running.png';
+image.onload = function() {
+  c.drawImage(image, 50, 70);
 }
 
-document.onkeydown = jumping;
-
-//=============================================================
-
-// var barrier;
-// var rand = 300;
-
-// function randomize() {
-//   createBarrier();
-//   rand = Math.round(Math.random()*(3000-500))+500;
-//   clearInterval(barrier);
-//   barrier = setInterval('randomize();', rand);
-// }
+// window.onload = function () {
+// 	var img = new Image();
+// 	img.src = 'running.png';
 //
-// console.log(rand);
-//
-// barrier = setInterval('randomize();', rand);
-//
-// function createBarrier(){
-//   var div = document.createElement('div');
-//   div.className = "barrier-block";
-//   arena.appendChild(div);
+// 	img.onload = function () {
+// 	  c.drawImage(img, 0, 0);
+// 	}
 // }
 
 
 
-var arr = [];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //==============Jumping==============
+//
+// var jumper = document.getElementById("jumper");
+// var arena = document.getElementById("arena");
+//
+// function jumping(e) {
+//   var x = e.keyCode;
+//   if (x == 38 || x == 32) {
+//     jumper.style.bottom = "170px";
+//   };
+//
+//   setTimeout("jumper.style.bottom = '100px'", 300);
+// }
+//
+// document.onkeydown = jumping;
+//
+// var posJ = getComputedStyle(jumper).left;
+// console.log(posJ);
+//
+// //===============Barrier==============================================
+// var posB = undefined;
+//
 // function createBarrier() {
 //   var barrier = document.createElement('div');
 //   barrier.className = "barrier-block";
+//   arena.appendChild(barrier);
 //
-//   arr.push(barrier);
+//   function deleteBarier() {
+//     return arena.removeChild(barrier);
+//   };
 //
-//   arena.appendChild(arr[0]);
+//   setTimeout(deleteBarier, 4000);
 //
-//   // function deleteBarier() {
-//   //   return arena.removeChild(arr[0]);
-//   // };
-//   //
-//   // setTimeout(deleteBarier, 4000);
+//   posB = getComputedStyle(barrier).left;
+//
+//   console.log(posB);
 // };
-function createBarrier() {
-  var barrier = document.createElement('div');
-  barrier.className = "barrier-block";
-  arena.appendChild(barrier);
-
-  function deleteBarier() {
-    return arena.removeChild(barrier);
-  };
-
-  setTimeout(deleteBarier, 4000);
-};
-
-//createBarrier();
-
-var randomize = 1000 + Math.random() * (3000 - 1000);
-
-setInterval(createBarrier, randomize);
+//
+// var randomize = 1000 + Math.random() * (3000 - 1000);
+//
+// setInterval(createBarrier, randomize);
+//
+// if(posB == posJ) {
+//   console.log('hello');
+// };
+//
+// // function MacroCollision(obj1,obj2){
+// //   var XColl=false;
+// //   var YColl=false;
+// //
+// //   if ((obj1.x + obj1.width >= obj2.x) && (obj1.x <= obj2.x + obj2.width)) XColl = true;
+// //   if ((obj1.y + obj1.height >= obj2.y) && (obj1.y <= obj2.y + obj2.height)) YColl = true;
+// //
+// //   if (XColl&YColl) {return true;}
+// //   return false;
+// // }

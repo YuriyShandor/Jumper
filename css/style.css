@@ -80,34 +80,26 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#game-arena {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 #arena {
-  width: 1024px;
-  height: 600px;
-  margin: 50px auto;
   background: #e0e0e0;
-  position: relative;
-  display: -ms-flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  align-items: flex-end;
-  overflow: hidden;
-}
-
-#arena .ground {
-  width: inherit;
-  height: 100px;
-  background: #212121;
+  border: 3px solid #000;
+  border-radius: 5px;
 }
 
 #arena #jumper {
   width: 60px;
   position: absolute;
-  left: 20%;
+  left: 100%;
   bottom: 100px;
 }
 
