@@ -6,28 +6,60 @@ arena.height = 600;
 
 c.fillRect(0, 500, 1024, 100);
 
-// var jumperImage = document.getElementById('jumperImage');
-//
-// console.log(jumperImage);
-//
-// c.drawImage(jumperImage, 100, 100, 50, 50);
 
-var image = new Image();
-image.src = '../img/running.png';
-image.onload = function() {
-  c.drawImage(image, 50, 70);
-}
+// c.beginPath();
+// var jumper = c.arc(175, 475, 25, 0, Math.PI * 2, false);
+// c.fillStyle = "red";
+// c.strokeStyle = "#000";
+// c.fill();
+// c.stroke();
 
-// window.onload = function () {
-// 	var img = new Image();
-// 	img.src = 'running.png';
+function Circle(x, y, radius) {
+  this.x = x;
+  this.y = y;
+  // this.dx = dx;
+  // this.dy = dy;
+  this.radius = radius;
+
+  this.draw = function() {
+    c.beginPath();
+    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    c.fillStyle = "red";
+    c.stroke();
+    c.fill();
+    c.closePath();
+  };
+
+  this.move = function() {
+    // this.x += this.dx;
+    // this.y += this.dy;
+
+    this.draw();
+  };
+};
+
+var jumper = new Circle(150, 475, 25);
+
+function showElements() {
+  requestAnimationFrame(showElements);
+  c.clearRect(0, 0, arena.width, arena.height);
+
+  jumper.move();
+
+  c.fillStyle = "#000";
+  c.fillRect(0, 500, 1024, 100);
+};
+
+showElements();
+
+// function jumping(e) {
+//   var x = e.keyCode;
+//   if (x == 38 || x == 32) {
+//     jumper.style.bottom = "170px";
+//   };
 //
-// 	img.onload = function () {
-// 	  c.drawImage(img, 0, 0);
-// 	}
+//   setTimeout("jumper.style.bottom = '100px'", 300);
 // }
-
-
 
 
 
