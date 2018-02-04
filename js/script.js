@@ -14,8 +14,8 @@ document.body.addEventListener("keyup", function(e) {
     canvasKeyCode = undefined;
 });
 
-var gravity = 0.1;
-var friction = 0.8;
+var gravity = 0.15;
+var friction = 0.9;
 
 function Circle(x, y, radius) {
   this.x = x;
@@ -46,7 +46,7 @@ function Circle(x, y, radius) {
     if (canvasKeyCode == 39) {
       // move right
       if (this.velX < this.speed) {
-        this.x++;
+        this.velX++;
       };
     };
     if (canvasKeyCode == 37) {
@@ -74,51 +74,37 @@ function Circle(x, y, radius) {
       this.jumping = false;
     };
 
-    // if(canvasKeyCode == 32 || canvasKeyCode == 38) {
-    //   // if(!this.jumping){
-    //   //  this.jumping = true;
-    //   //  this.y += -this.dy;
-    //   // }
-    //   this.y += -this.dy;
-    //
-    //
-    //
-    //
-    // };
-    //
-    // if (this.y < 350) {
-    //   this.dy = -this.dy;
-    // }
-    //
-    // if (this.y > 475) {
-    //   this.y = 475;
-    // }
-    //
-    // this.dx *= frictionValue;
-    // //this.dy += gravityValue;
-    //
-    // this.x += this.dx;
-    // //this.y += this.dy;
-    //
-    // // if(this.y > 475){
-    // //     this.y = 475;
-    // //     this.dy = 0;
-    // //     this.jumping = false;
-    // // }
-    //
-    // // if (this.x >= arena.width - (this.x + this.radius)) {
-    // //     this.x = arena.width - (this.x + this.radius);
-    // // } else if (this.x + this.radius <= 0) {
-    // //     this.x = 0 + this.radius;
-    // // };
-    // //
-
-
     this.draw();
   };
 };
 
+function Barrier(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.dx = 4;
+
+  this.draw = function() {
+    c.fillStyle = "#000";
+    c.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  this.move = function() {
+    this.x -= this.dx;
+
+    this.draw();
+  }
+};
+
 var jumper = new Circle(150, 475, 25);
+
+var barriersArr = [];
+
+for (var i=0; i<5; i++) {
+  barriersArr.push(new Barrier(1024, 425, 5, 75));
+
+}
 
 function showElements() {
   requestAnimationFrame(showElements);
@@ -126,122 +112,15 @@ function showElements() {
 
   jumper.move();
 
+  for (var i=0; i < barriersArr.length; i++) {
+    barriersArr[i].move();
+  };
+
   c.fillStyle = "#000";
   c.fillRect(0, 500, 1024, 100);
 };
 
 showElements();
-
-// function jumping(e) {
-//   var x = e.keyCode;
-//   if (x == 38 || x == 32) {
-//     jumper.style.bottom = "170px";
-//   };
-//
-//   setTimeout("jumper.style.bottom = '100px'", 300);
-// }
-
-
-
-
-
-
-
-
-
-
-// var canvas = document.getElementById("arena"),
-//     ctx = canvas.getContext("2d"),
-//     width = 500,
-//     height = 200,
-//     player = {
-//       x : width/2,
-//       y : height - 5,
-//       width : 5,
-//       height : 5,
-//       speed: 3,
-//       velX: 0,
-//       velY: 0,
-//       jumping: false
-//     },
-//     keys = [],
-//     friction = 0.8,
-//     gravity = 0.3;
-//
-// canvas.width = width;
-// canvas.height = height;
-//
-// function update(){
-//   //check keys
-//     if (keys[38] || keys[32]) {
-//         // up arrow or space
-//       if(!player.jumping){
-//        player.jumping = true;
-//        player.velY = -player.speed*2;
-//       }
-//     }
-//     // if (keys[39]) {
-//     //     // right arrow
-//     //     if (player.velX < player.speed) {
-//     //         player.velX++;
-//     //     }
-//     // }
-//     // if (keys[37]) {
-//     //     // left arrow
-//     //     if (player.velX > -player.speed) {
-//     //         player.velX--;
-//     //     }
-//     // }
-//
-//     player.velX *= friction;
-//
-//     player.velY += gravity;
-//
-//     player.x += player.velX;
-//     player.y += player.velY;
-//
-//     if (player.x >= width-player.width) {
-//         player.x = width-player.width;
-//     } else if (player.x <= 0) {
-//         player.x = 0;
-//     }
-//
-//     if(player.y >= height-player.height){
-//         player.y = height - player.height;
-//         player.jumping = false;
-//     }
-//
-//   ctx.clearRect(0,0,width,height);
-//   ctx.fillStyle = "red";
-//   ctx.fillRect(player.x, player.y, player.width, player.height);
-//
-//   requestAnimationFrame(update);
-// }
-//
-// document.body.addEventListener("keydown", function(e) {
-//     keys[e.keyCode] = true;
-// });
-//
-// document.body.addEventListener("keyup", function(e) {
-//     keys[e.keyCode] = false;
-// });
-//
-//
-// window.addEventListener("load",function(){
-//     update();
-// });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // //==============Jumping==============
