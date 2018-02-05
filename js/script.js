@@ -100,11 +100,34 @@ function Barrier(x, y, width, height) {
 var jumper = new Circle(150, 475, 25);
 
 var barriersArr = [];
+var timer = 0;
+var randomSpawnRate = Math.floor((Math.random() * 25) + 50);
 
-for (var i=0; i<5; i++) {
-  barriersArr.push(new Barrier(1024, 425, 5, 75));
+// for (var i=0; i<5; i++) {
+//   //barriersArr.push(new Barrier(1024, 425, 5, 75));
+//
+//   setTimeout(function() {
+//       barriersArr.push(new Barrier(1024, 425, 5, 75));
+//
+//     }, 4000);
+// }
+// console.log(barriersArr);
 
-}
+// function display(i){
+//   if(i >= barriersArr.length){
+//       i = 0;
+//   }
+//
+//   barriersArr[i].move();
+//   console.log(barriersArr[i]);
+//   setTimeout(function(){
+//      display(i + 1)
+//   }, 1000)
+// };
+//
+// display(0);
+
+
 
 function showElements() {
   requestAnimationFrame(showElements);
@@ -112,16 +135,42 @@ function showElements() {
 
   jumper.move();
 
+  timer ++;
+	//console.log(timer);
+	if (timer % 100 == 0) {
+    var width = Math.floor((Math.random() * 150) + 5);
+		barriersArr.push(new Barrier(1024, 425, width, 75));
+		//randomSpawnRate = Math.floor((Math.random() * 10) + 175);
+	}
+
   for (var i=0; i < barriersArr.length; i++) {
     barriersArr[i].move();
+
+    if (barriersArr[i].x < -150) {
+      barriersArr.splice(i, 1);
+    };
   };
 
-  c.fillStyle = "#000";
+
+  c.fillStyle = "grey";
   c.fillRect(0, 500, 1024, 100);
 };
 
 showElements();
 
+// var s=['John', 'Alex', 'Mark'];
+// function display(i){
+//     if(i >= s.length){
+//         i = 0;
+//     }
+//
+//     console.log(s[i]);
+//     setTimeout(function(){
+//        display(i + 1)
+//     }, 500)
+// };
+//
+// display(0);
 
 // //==============Jumping==============
 //
