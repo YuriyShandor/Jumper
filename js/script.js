@@ -63,10 +63,10 @@ function Circle(x, y, radius) {
     this.x += this.velX;
     this.y += this.velY;
 
-    if (this.x >= arena.width) {
-      this.x = arena.width;
-    } else if (this.x <= 0) {
-      this.x = 0;
+    if (this.x + this.radius >= arena.width) {
+      this.x = arena.width - this.radius;
+    } else if (this.x - this.radius <= 0) {
+      this.x = 0 + this.radius;
     };
 
     if(this.y > 475){
@@ -100,34 +100,13 @@ function Barrier(x, y, width, height) {
 var jumper = new Circle(150, 475, 25);
 
 var barriersArr = [];
-var timer = 0;
-var randomSpawnRate = Math.floor((Math.random() * 25) + 50);
+var barrierTimer = 0;
 
-// for (var i=0; i<5; i++) {
-//   //barriersArr.push(new Barrier(1024, 425, 5, 75));
-//
-//   setTimeout(function() {
-//       barriersArr.push(new Barrier(1024, 425, 5, 75));
-//
-//     }, 4000);
-// }
-// console.log(barriersArr);
-
-// function display(i){
-//   if(i >= barriersArr.length){
-//       i = 0;
-//   }
-//
-//   barriersArr[i].move();
-//   console.log(barriersArr[i]);
-//   setTimeout(function(){
-//      display(i + 1)
-//   }, 1000)
-// };
-//
-// display(0);
-
-
+function collisionDetection (playerX, playerY, barrierX, barrierY, barrierWidth, barrierHeight) {
+  var xDistance = (barrierX + barrierWidth / 2) - playerX;
+  var yDistance = (barrierY + barrierHeight / 2) - playerY;
+  return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+}
 
 function showElements() {
   requestAnimationFrame(showElements);
@@ -135,16 +114,19 @@ function showElements() {
 
   jumper.move();
 
-  timer ++;
-	//console.log(timer);
-	if (timer % 100 == 0) {
+  barrierTimer ++;
+	if (barrierTimer % 100 == 0) {
     var width = Math.floor((Math.random() * 150) + 5);
 		barriersArr.push(new Barrier(1024, 425, width, 75));
-		//randomSpawnRate = Math.floor((Math.random() * 10) + 175);
 	}
 
   for (var i=0; i < barriersArr.length; i++) {
     barriersArr[i].move();
+
+    if (collisionDetection(jumper.x, jumper.y, barriersArr[i].x, barriersArr[i].y, barriersArr[i].width, barriersArr[i].height) < jumper.radius + barriersArr[i].width / 2 ||
+        collisionDetection(jumper.x, jumper.y, barriersArr[i].x, barriersArr[i].y, barriersArr[i].width, barriersArr[i].height) < jumper.radius + barriersArr[i].height / 2) {
+      console.log('Game over');
+    }
 
     if (barriersArr[i].x < -150) {
       barriersArr.splice(i, 1);
@@ -157,74 +139,3 @@ function showElements() {
 };
 
 showElements();
-
-// var s=['John', 'Alex', 'Mark'];
-// function display(i){
-//     if(i >= s.length){
-//         i = 0;
-//     }
-//
-//     console.log(s[i]);
-//     setTimeout(function(){
-//        display(i + 1)
-//     }, 500)
-// };
-//
-// display(0);
-
-// //==============Jumping==============
-//
-// var jumper = document.getElementById("jumper");
-// var arena = document.getElementById("arena");
-//
-// function jumping(e) {
-//   var x = e.keyCode;
-//   if (x == 38 || x == 32) {
-//     jumper.style.bottom = "170px";
-//   };
-//
-//   setTimeout("jumper.style.bottom = '100px'", 300);
-// }
-//
-// document.onkeydown = jumping;
-//
-// var posJ = getComputedStyle(jumper).left;
-// console.log(posJ);
-//
-// //===============Barrier==============================================
-// var posB = undefined;
-//
-// function createBarrier() {
-//   var barrier = document.createElement('div');
-//   barrier.className = "barrier-block";
-//   arena.appendChild(barrier);
-//
-//   function deleteBarier() {
-//     return arena.removeChild(barrier);
-//   };
-//
-//   setTimeout(deleteBarier, 4000);
-//
-//   posB = getComputedStyle(barrier).left;
-//
-//   console.log(posB);
-// };
-//
-// var randomize = 1000 + Math.random() * (3000 - 1000);
-//
-// setInterval(createBarrier, randomize);
-//
-// if(posB == posJ) {
-//   console.log('hello');
-// };
-//
-// // function MacroCollision(obj1,obj2){
-// //   var XColl=false;
-// //   var YColl=false;
-// //
-// //   if ((obj1.x + obj1.width >= obj2.x) && (obj1.x <= obj2.x + obj2.width)) XColl = true;
-// //   if ((obj1.y + obj1.height >= obj2.y) && (obj1.y <= obj2.y + obj2.height)) YColl = true;
-// //
-// //   if (XColl&YColl) {return true;}
-// //   return false;
-// // }
